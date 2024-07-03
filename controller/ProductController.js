@@ -43,6 +43,26 @@ const ProductController = {
       res.status(400).send(error);
     }
   },
+
+  async getById(req, res) {
+    try {
+      const products = await Product.findById(req.params.id);
+      res.send(products);
+    } catch (error) {
+      console.error(error);
+      res.status(400).send(error);
+    }
+  },
+
+  async getByName(req, res) {
+    try {
+      const products = await Product.findOne({ name: req.params.name });
+      res.send(products);
+    } catch (error) {
+      console.error(error);
+      res.status(400).send(error);
+    }
+  },
 };
 
 module.exports = ProductController;
