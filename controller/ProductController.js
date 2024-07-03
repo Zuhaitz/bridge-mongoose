@@ -32,6 +32,17 @@ const ProductController = {
       res.status(400).send(error);
     }
   },
+
+  async delete(req, res) {
+    try {
+      const product = await Product.findByIdAndDelete(req.params.id);
+      if (!product) res.status(400).send({ message: "Product does not exist" });
+      res.send({ message: "Product deleted successfully", product });
+    } catch (error) {
+      console.error(error);
+      res.status(400).send(error);
+    }
+  },
 };
 
 module.exports = ProductController;
