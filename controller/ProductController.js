@@ -20,6 +20,18 @@ const ProductController = {
       res.status(400).send(error);
     }
   },
+
+  async update(req, res) {
+    try {
+      const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      res.send(product);
+    } catch (error) {
+      console.error(error);
+      res.status(400).send(error);
+    }
+  },
 };
 
 module.exports = ProductController;
