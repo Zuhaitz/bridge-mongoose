@@ -1,7 +1,7 @@
 const express = require("express");
 const { dbConnection } = require("./config/config");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.SERVER_PORT;
 
 const runServer = async () => {
   await dbConnection();
